@@ -245,7 +245,7 @@ static sfxHandle_t PlayerModel_MenuKey( int key )
 
 	switch (key)
 	{
-		case K_KP_LEFTARROW:
+		case K_PAD0_DPAD_LEFT:
 		case K_LEFTARROW:
 			m = Menu_ItemAtCursor(&s_playermodel.menu);
 			picnum = m->id - ID_PLAYERPIC0;
@@ -269,7 +269,7 @@ static sfxHandle_t PlayerModel_MenuKey( int key )
 			}
 			break;
 
-		case K_KP_RIGHTARROW:
+		case K_PAD0_DPAD_RIGHT:
 		case K_RIGHTARROW:
 			m = Menu_ItemAtCursor(&s_playermodel.menu);
 			picnum = m->id - ID_PLAYERPIC0;
@@ -292,7 +292,6 @@ static sfxHandle_t PlayerModel_MenuKey( int key )
 			}
 			break;
 			
-		case K_PAD0_START:
 		case K_ESCAPE:
 			PlayerModel_SaveChanges();
 			break;
