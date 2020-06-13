@@ -2682,16 +2682,12 @@ int UI_SelectForKey(int key)
 		case K_ENTER:
 		case K_KP_ENTER:
 		case K_RIGHTARROW:
-		case K_KP_RIGHTARROW:
-		case K_JOY1:
-		case K_JOY2:
-		case K_JOY3:
-		case K_JOY4:
+		case K_PAD0_DPAD_RIGHT:
 			return 1; // next
 
 		case K_MOUSE2:
 		case K_LEFTARROW:
-		case K_KP_LEFTARROW:
+		case K_PAD0_DPAD_LEFT:
 			return -1; // previous
 	}
 
@@ -2769,12 +2765,12 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 				DC->executeText(EXEC_APPEND, "screenshot\n");
 			}
 			break;
-		case K_KP_UPARROW:
+		case K_PAD0_DPAD_UP:
 		case K_UPARROW:
 			Menu_SetPrevCursorItem(menu);
 			break;
 
-		case K_ESCAPE:
+		case K_JOY11:
 			if (!g_waitingForKey && menu->onESC) {
 				itemDef_t it;
 		    it.parent = menu;
@@ -2782,7 +2778,7 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 			}
 			break;
 		case K_TAB:
-		case K_KP_DOWNARROW:
+		case K_PAD0_DPAD_DOWN:
 		case K_DOWNARROW:
 			Menu_SetNextCursorItem(menu);
 			break;
