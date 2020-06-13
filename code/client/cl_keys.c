@@ -157,13 +157,13 @@ keyname_t keynames[] =
 	{"AUX16", K_AUX16},
 
 	{"KP_HOME",			K_KP_HOME },
-	{"KP_UPARROW",		K_KP_UPARROW },
+	{"KP_UPARROW",		K_PAD0_LEFTSTICK_UP },
 	{"KP_PGUP",			K_KP_PGUP },
 	{"KP_LEFTARROW",	K_PAD0_LEFTSTICK_LEFT },
 	{"KP_5",			K_KP_5 },
 	{"KP_RIGHTARROW",	K_PAD0_LEFTSTICK_RIGHT },
 	{"KP_END",			K_KP_END },
-	{"KP_DOWNARROW",	K_KP_DOWNARROW },
+	{"KP_DOWNARROW",	K_PAD0_LEFTSTICK_DOWN },
 	{"KP_PGDN",			K_KP_PGDN },
 	{"KP_ENTER",		K_KP_ENTER },
 	{"KP_INS",			K_KP_INS },
@@ -670,7 +670,7 @@ void Console_Key (int key) {
 
 	// command history (ctrl-p ctrl-n for unix style)
 
-	if ( (key == K_MWHEELUP && keys[K_SHIFT].down) || ( key == K_UPARROW ) || ( key == K_KP_UPARROW ) ||
+	if ( (key == K_MWHEELUP && keys[K_SHIFT].down) || ( key == K_UPARROW ) || ( key == K_PAD0_LEFTSTICK_UP ) ||
 		 ( ( tolower(key) == 'p' ) && keys[K_CTRL].down ) ) {
 		if ( nextHistoryLine - historyLine < COMMAND_HISTORY 
 			&& historyLine > 0 ) {
@@ -680,7 +680,7 @@ void Console_Key (int key) {
 		return;
 	}
 
-	if ( (key == K_MWHEELDOWN && keys[K_SHIFT].down) || ( key == K_DOWNARROW ) || ( key == K_KP_DOWNARROW ) ||
+	if ( (key == K_MWHEELDOWN && keys[K_SHIFT].down) || ( key == K_DOWNARROW ) || ( key == K_PAD0_LEFTSTICK_DOWN ) ||
 		 ( ( tolower(key) == 'n' ) && keys[K_CTRL].down ) ) {
 		historyLine++;
 		if (historyLine >= nextHistoryLine) {

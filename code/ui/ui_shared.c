@@ -1784,7 +1784,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 		}
 		else {
 			viewmax = (item->window.rect.h / listPtr->elementHeight);
-			if ( key == K_UPARROW || key == K_KP_UPARROW ) 
+			if ( key == K_UPARROW || key == K_PAD0_LEFTSTICK_UP ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos--;
@@ -1807,7 +1807,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 				}
 				return qtrue;
 			}
-			if ( key == K_DOWNARROW || key == K_KP_DOWNARROW ) 
+			if ( key == K_DOWNARROW || key == K_PAD0_LEFTSTICK_DOWN ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos++;
@@ -2213,14 +2213,14 @@ qboolean Item_TextField_HandleKey(itemDef_t *item, int key) {
 			}
 		}
 
-		if (key == K_TAB || key == K_DOWNARROW || key == K_KP_DOWNARROW) {
+		if (key == K_TAB || key == K_DOWNARROW || key == K_PAD0_LEFTSTICK_DOWN) {
 			newItem = Menu_SetNextCursorItem(item->parent);
 			if (newItem && (newItem->type == ITEM_TYPE_EDITFIELD || newItem->type == ITEM_TYPE_NUMERICFIELD)) {
 				g_editItem = newItem;
 			}
 		}
 
-		if (key == K_UPARROW || key == K_KP_UPARROW) {
+		if (key == K_UPARROW || key == K_PAD0_LEFTSTICK_UP) {
 			newItem = Menu_SetPrevCursorItem(item->parent);
 			if (newItem && (newItem->type == ITEM_TYPE_EDITFIELD || newItem->type == ITEM_TYPE_NUMERICFIELD)) {
 				g_editItem = newItem;

@@ -1075,7 +1075,7 @@ sfxHandle_t ScrollList_Key( menulist_s *l, int key )
 			}
 			return (menu_buzz_sound);
 
-		case K_KP_UPARROW:
+		case K_PAD0_LEFTSTICK_UP:
 		case K_UPARROW:
 			if( l->curvalue == 0 ) {
 				return menu_buzz_sound;
@@ -1099,7 +1099,7 @@ sfxHandle_t ScrollList_Key( menulist_s *l, int key )
 
 			return (menu_move_sound);
 
-		case K_KP_DOWNARROW:
+		case K_PAD0_LEFTSTICK_DOWN:
 		case K_DOWNARROW:
 			if( l->curvalue == l->numitems - 1 ) {
 				return menu_buzz_sound;
@@ -1671,7 +1671,7 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 			trap_Cmd_ExecuteText(EXEC_APPEND, "screenshot\n");
 			break;
 #endif
-		case K_KP_UPARROW:
+		case K_PAD0_LEFTSTICK_UP:
 		case K_UPARROW:
 		case K_PAD0_DPAD_UP:
 			cursor_prev    = m->cursor;
@@ -1685,7 +1685,7 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 			break;
 
 		case K_TAB:
-		case K_KP_DOWNARROW:
+		case K_PAD0_LEFTSTICK_DOWN:
 		case K_DOWNARROW:
 		case K_PAD0_DPAD_DOWN:
 			cursor_prev    = m->cursor;
