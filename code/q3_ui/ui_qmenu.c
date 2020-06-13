@@ -463,10 +463,10 @@ static sfxHandle_t RadioButton_Key( menuradiobutton_s *rb, int key )
 		case K_KP_ENTER:
 		case K_KP_LEFTARROW:
 		case K_LEFTARROW:
-		case K_PAD0_DPAD_LEFT:
+		case K_PAD0_LEFTSTICK_LEFT:
 		case K_KP_RIGHTARROW:
 		case K_RIGHTARROW:
-		case K_PAD0_DPAD_RIGHT:
+		case K_PAD0_LEFTSTICK_RIGHT:
 			rb->curvalue = !rb->curvalue;
 			if ( rb->generic.callback )
 				rb->generic.callback( rb, QM_ACTIVATED );
@@ -583,7 +583,7 @@ static sfxHandle_t Slider_Key( menuslider_s *s, int key )
 				sound = 0;
 			break;
 
-		case K_KP_LEFTARROW:
+		case K_PAD0_LEFTSTICK_LEFT:
 		case K_LEFTARROW:
 			if (s->curvalue > s->minvalue)
 			{
@@ -594,7 +594,7 @@ static sfxHandle_t Slider_Key( menuslider_s *s, int key )
 				sound = menu_buzz_sound;
 			break;			
 
-		case K_KP_RIGHTARROW:
+		case K_PAD0_LEFTSTICK_RIGHT:
 		case K_RIGHTARROW:
 			if (s->curvalue < s->maxvalue)
 			{
@@ -795,7 +795,7 @@ static sfxHandle_t SpinControl_Key( menulist_s *s, int key )
 	sound = 0;
 	switch (key)
 	{
-		case K_KP_RIGHTARROW:
+		case K_PAD0_LEFTSTICK_RIGHT:
 		case K_RIGHTARROW:
 		case K_MOUSE1:
 			s->curvalue++;
@@ -804,7 +804,7 @@ static sfxHandle_t SpinControl_Key( menulist_s *s, int key )
 			sound = menu_move_sound;
 			break;
 		
-		case K_KP_LEFTARROW:
+		case K_PAD0_LEFTSTICK_LEFT:
 		case K_LEFTARROW:
 			s->curvalue--;
 			if (s->curvalue < 0)
@@ -1123,7 +1123,7 @@ sfxHandle_t ScrollList_Key( menulist_s *l, int key )
 
 			return menu_move_sound;
 
-		case K_KP_LEFTARROW:
+		case K_PAD0_LEFTSTICK_LEFT:
 		case K_LEFTARROW:
 			if( l->columns == 1 ) {
 				return menu_null_sound;
@@ -1146,7 +1146,7 @@ sfxHandle_t ScrollList_Key( menulist_s *l, int key )
 
 			return menu_move_sound;
 
-		case K_KP_RIGHTARROW:
+		case K_PAD0_LEFTSTICK_RIGHT:
 		case K_RIGHTARROW:
 			if( l->columns == 1 ) {
 				return menu_null_sound;

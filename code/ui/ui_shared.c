@@ -1735,7 +1735,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 		max = Item_ListBox_MaxScroll(item);
 		if (item->window.flags & WINDOW_HORIZONTAL) {
 			viewmax = (item->window.rect.w / listPtr->elementWidth);
-			if ( key == K_LEFTARROW || key == K_KP_LEFTARROW ) 
+			if ( key == K_LEFTARROW || key == K_PAD0_LEFTSTICK_LEFT ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos--;
@@ -1758,7 +1758,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 				}
 				return qtrue;
 			}
-			if ( key == K_RIGHTARROW || key == K_KP_RIGHTARROW ) 
+			if ( key == K_RIGHTARROW || key == K_PAD0_LEFTSTICK_RIGHT ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos++;
@@ -2169,7 +2169,7 @@ qboolean Item_TextField_HandleKey(itemDef_t *item, int key) {
 				return qtrue;
 			}
 
-			if ( key == K_RIGHTARROW || key == K_KP_RIGHTARROW ) 
+			if ( key == K_RIGHTARROW || key == K_PAD0_LEFTSTICK_RIGHT ) 
 			{
 				if (editPtr->maxPaintChars && item->cursorPos >= editPtr->maxPaintChars && item->cursorPos < len) {
 					item->cursorPos++;
@@ -2182,7 +2182,7 @@ qboolean Item_TextField_HandleKey(itemDef_t *item, int key) {
 				return qtrue;
 			}
 
-			if ( key == K_LEFTARROW || key == K_KP_LEFTARROW ) 
+			if ( key == K_LEFTARROW || key == K_PAD0_LEFTSTICK_LEFT ) 
 			{
 				if ( item->cursorPos > 0 ) {
 					item->cursorPos--;

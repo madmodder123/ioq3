@@ -155,7 +155,7 @@ void MField_KeyDownEvent( mfield_t *edit, int key ) {
 		return;
 	}
 
-	if ( key == K_RIGHTARROW || key == K_KP_RIGHTARROW ) 
+	if ( key == K_RIGHTARROW || key == K_PAD0_LEFTSTICK_RIGHT ) 
 	{
 		if ( edit->cursor < len ) {
 			edit->cursor++;
@@ -167,7 +167,7 @@ void MField_KeyDownEvent( mfield_t *edit, int key ) {
 		return;
 	}
 
-	if ( key == K_LEFTARROW || key == K_KP_LEFTARROW ) 
+	if ( key == K_LEFTARROW || key == K_PAD0_LEFTSTICK_LEFT ) 
 	{
 		if ( edit->cursor > 0 ) {
 			edit->cursor--;
