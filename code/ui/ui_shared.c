@@ -2770,7 +2770,7 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 			Menu_SetPrevCursorItem(menu);
 			break;
 
-		case K_JOY11:
+		case K_JOY4:
 			if (!g_waitingForKey && menu->onESC) {
 				itemDef_t it;
 		    it.parent = menu;
@@ -2803,11 +2803,9 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 				}
 			}
 			break;
-
 		case K_JOY1:
 		case K_JOY2:
 		case K_JOY3:
-		case K_JOY4:
 		case K_AUX1:
 		case K_AUX2:
 		case K_AUX3:
@@ -2825,7 +2823,6 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 		case K_AUX15:
 		case K_AUX16:
 		case K_KP_ENTER:
-		case K_ENTER:
 			if (item) {
 				if (item->type == ITEM_TYPE_EDITFIELD || item->type == ITEM_TYPE_NUMERICFIELD) {
 					item->cursorPos = 0;
