@@ -1619,10 +1619,6 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 	// menu system keys
 	switch ( key )
 	{
-		case K_PAD0_START:
-			UI_PopMenu();
-			return menu_out_sound;
-	}
 		case K_ESCAPE:
 			UI_PopMenu();
 			return menu_out_sound;
