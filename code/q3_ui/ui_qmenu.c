@@ -460,13 +460,16 @@ static sfxHandle_t RadioButton_Key( menuradiobutton_s *rb, int key )
 			if (!(rb->generic.flags & QMF_HASMOUSEFOCUS))
 				break;
 
+		case K_JOY1:
+		case K_JOY2:
+		case K_JOY3:
+		case K_JOY4:
+		case K_ENTER:
 		case K_KP_ENTER:
 		case K_KP_LEFTARROW:
 		case K_LEFTARROW:
-		case K_PAD0_LEFTSTICK_LEFT:
 		case K_KP_RIGHTARROW:
 		case K_RIGHTARROW:
-		case K_PAD0_LEFTSTICK_RIGHT:
 			rb->curvalue = !rb->curvalue;
 			if ( rb->generic.callback )
 				rb->generic.callback( rb, QM_ACTIVATED );
@@ -583,7 +586,7 @@ static sfxHandle_t Slider_Key( menuslider_s *s, int key )
 				sound = 0;
 			break;
 
-		case K_PAD0_LEFTSTICK_LEFT:
+		case K_KP_LEFTARROW:
 		case K_LEFTARROW:
 			if (s->curvalue > s->minvalue)
 			{
@@ -594,7 +597,7 @@ static sfxHandle_t Slider_Key( menuslider_s *s, int key )
 				sound = menu_buzz_sound;
 			break;			
 
-		case K_PAD0_LEFTSTICK_RIGHT:
+		case K_KP_RIGHTARROW:
 		case K_RIGHTARROW:
 			if (s->curvalue < s->maxvalue)
 			{
@@ -795,7 +798,7 @@ static sfxHandle_t SpinControl_Key( menulist_s *s, int key )
 	sound = 0;
 	switch (key)
 	{
-		case K_PAD0_LEFTSTICK_RIGHT:
+		case K_KP_RIGHTARROW:
 		case K_RIGHTARROW:
 		case K_MOUSE1:
 			s->curvalue++;
@@ -804,7 +807,7 @@ static sfxHandle_t SpinControl_Key( menulist_s *s, int key )
 			sound = menu_move_sound;
 			break;
 		
-		case K_PAD0_LEFTSTICK_LEFT:
+		case K_KP_LEFTARROW:
 		case K_LEFTARROW:
 			s->curvalue--;
 			if (s->curvalue < 0)
@@ -1075,7 +1078,7 @@ sfxHandle_t ScrollList_Key( menulist_s *l, int key )
 			}
 			return (menu_buzz_sound);
 
-		case K_PAD0_LEFTSTICK_UP:
+		case K_KP_UPARROW:
 		case K_UPARROW:
 			if( l->curvalue == 0 ) {
 				return menu_buzz_sound;
@@ -1099,7 +1102,7 @@ sfxHandle_t ScrollList_Key( menulist_s *l, int key )
 
 			return (menu_move_sound);
 
-		case K_PAD0_LEFTSTICK_DOWN:
+		case K_KP_DOWNARROW:
 		case K_DOWNARROW:
 			if( l->curvalue == l->numitems - 1 ) {
 				return menu_buzz_sound;
@@ -1123,7 +1126,7 @@ sfxHandle_t ScrollList_Key( menulist_s *l, int key )
 
 			return menu_move_sound;
 
-		case K_PAD0_LEFTSTICK_LEFT:
+		case K_KP_LEFTARROW:
 		case K_LEFTARROW:
 			if( l->columns == 1 ) {
 				return menu_null_sound;
@@ -1146,7 +1149,7 @@ sfxHandle_t ScrollList_Key( menulist_s *l, int key )
 
 			return menu_move_sound;
 
-		case K_PAD0_LEFTSTICK_RIGHT:
+		case K_KP_RIGHTARROW:
 		case K_RIGHTARROW:
 			if( l->columns == 1 ) {
 				return menu_null_sound;
@@ -1617,7 +1620,7 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 	// menu system keys
 	switch ( key )
 	{
-		case K_MOUSE2:
+		case K_PAD0_START:
 		case K_ESCAPE:
 			UI_PopMenu();
 			return menu_out_sound;
@@ -1671,9 +1674,8 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 			trap_Cmd_ExecuteText(EXEC_APPEND, "screenshot\n");
 			break;
 #endif
-		case K_PAD0_LEFTSTICK_UP:
+		case K_KP_UPARROW:
 		case K_UPARROW:
-		case K_PAD0_DPAD_UP:
 			cursor_prev    = m->cursor;
 			m->cursor_prev = m->cursor;
 			m->cursor--;
@@ -1685,9 +1687,8 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 			break;
 
 		case K_TAB:
-		case K_PAD0_LEFTSTICK_DOWN:
+		case K_KP_DOWNARROW:
 		case K_DOWNARROW:
-		case K_PAD0_DPAD_DOWN:
 			cursor_prev    = m->cursor;
 			m->cursor_prev = m->cursor;
 			m->cursor++;
@@ -1700,15 +1701,15 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 
 		case K_MOUSE1:
 		case K_MOUSE3:
-		case K_JOY1:
-		case K_JOY2:
-		case K_JOY3:
-		case K_JOY4:
 			if (item)
 				if ((item->flags & QMF_HASMOUSEFOCUS) && !(item->flags & (QMF_GRAYED|QMF_INACTIVE)))
 					return (Menu_ActivateItem( m, item ));
 			break;
 
+		case K_JOY1:
+		case K_JOY2:
+		case K_JOY3:
+		case K_JOY4:
 		case K_AUX1:
 		case K_AUX2:
 		case K_AUX3:
@@ -1725,6 +1726,8 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 		case K_AUX14:
 		case K_AUX15:
 		case K_AUX16:
+		case K_KP_ENTER:
+		case K_ENTER:
 			if (item)
 				if (!(item->flags & (QMF_MOUSEONLY|QMF_GRAYED|QMF_INACTIVE)))
 					return (Menu_ActivateItem( m, item ));

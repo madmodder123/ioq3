@@ -1735,7 +1735,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 		max = Item_ListBox_MaxScroll(item);
 		if (item->window.flags & WINDOW_HORIZONTAL) {
 			viewmax = (item->window.rect.w / listPtr->elementWidth);
-			if ( key == K_LEFTARROW || key == K_PAD0_LEFTSTICK_LEFT ) 
+			if ( key == K_LEFTARROW || key == K_KP_LEFTARROW ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos--;
@@ -1758,7 +1758,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 				}
 				return qtrue;
 			}
-			if ( key == K_RIGHTARROW || key == K_PAD0_LEFTSTICK_RIGHT ) 
+			if ( key == K_RIGHTARROW || key == K_KP_RIGHTARROW ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos++;
@@ -1784,7 +1784,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 		}
 		else {
 			viewmax = (item->window.rect.h / listPtr->elementHeight);
-			if ( key == K_UPARROW || key == K_PAD0_LEFTSTICK_UP ) 
+			if ( key == K_UPARROW || key == K_KP_UPARROW ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos--;
@@ -1807,7 +1807,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 				}
 				return qtrue;
 			}
-			if ( key == K_DOWNARROW || key == K_PAD0_LEFTSTICK_DOWN ) 
+			if ( key == K_DOWNARROW || key == K_KP_DOWNARROW ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos++;
@@ -2169,7 +2169,7 @@ qboolean Item_TextField_HandleKey(itemDef_t *item, int key) {
 				return qtrue;
 			}
 
-			if ( key == K_RIGHTARROW || key == K_PAD0_LEFTSTICK_RIGHT ) 
+			if ( key == K_RIGHTARROW || key == K_KP_RIGHTARROW ) 
 			{
 				if (editPtr->maxPaintChars && item->cursorPos >= editPtr->maxPaintChars && item->cursorPos < len) {
 					item->cursorPos++;
@@ -2182,7 +2182,7 @@ qboolean Item_TextField_HandleKey(itemDef_t *item, int key) {
 				return qtrue;
 			}
 
-			if ( key == K_LEFTARROW || key == K_PAD0_LEFTSTICK_LEFT ) 
+			if ( key == K_LEFTARROW || key == K_KP_LEFTARROW ) 
 			{
 				if ( item->cursorPos > 0 ) {
 					item->cursorPos--;
@@ -2213,14 +2213,14 @@ qboolean Item_TextField_HandleKey(itemDef_t *item, int key) {
 			}
 		}
 
-		if (key == K_TAB || key == K_DOWNARROW || key == K_PAD0_LEFTSTICK_DOWN) {
+		if (key == K_TAB || key == K_DOWNARROW || key == K_KP_DOWNARROW) {
 			newItem = Menu_SetNextCursorItem(item->parent);
 			if (newItem && (newItem->type == ITEM_TYPE_EDITFIELD || newItem->type == ITEM_TYPE_NUMERICFIELD)) {
 				g_editItem = newItem;
 			}
 		}
 
-		if (key == K_UPARROW || key == K_PAD0_LEFTSTICK_UP) {
+		if (key == K_UPARROW || key == K_KP_UPARROW) {
 			newItem = Menu_SetPrevCursorItem(item->parent);
 			if (newItem && (newItem->type == ITEM_TYPE_EDITFIELD || newItem->type == ITEM_TYPE_NUMERICFIELD)) {
 				g_editItem = newItem;
@@ -2682,12 +2682,16 @@ int UI_SelectForKey(int key)
 		case K_ENTER:
 		case K_KP_ENTER:
 		case K_RIGHTARROW:
-		case K_PAD0_DPAD_RIGHT:
+		case K_KP_RIGHTARROW:
+		case K_JOY1:
+		case K_JOY2:
+		case K_JOY3:
+		case K_JOY4:
 			return 1; // next
 
 		case K_MOUSE2:
 		case K_LEFTARROW:
-		case K_PAD0_DPAD_LEFT:
+		case K_KP_LEFTARROW:
 			return -1; // previous
 	}
 
@@ -2765,12 +2769,12 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 				DC->executeText(EXEC_APPEND, "screenshot\n");
 			}
 			break;
-		case K_PAD0_DPAD_UP:
+		case K_KP_UPARROW:
 		case K_UPARROW:
 			Menu_SetPrevCursorItem(menu);
 			break;
 
-		case K_JOY4:
+		case K_ESCAPE:
 			if (!g_waitingForKey && menu->onESC) {
 				itemDef_t it;
 		    it.parent = menu;
@@ -2778,7 +2782,7 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 			}
 			break;
 		case K_TAB:
-		case K_PAD0_DPAD_DOWN:
+		case K_KP_DOWNARROW:
 		case K_DOWNARROW:
 			Menu_SetNextCursorItem(menu);
 			break;
@@ -2803,9 +2807,11 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 				}
 			}
 			break;
+
 		case K_JOY1:
 		case K_JOY2:
 		case K_JOY3:
+		case K_JOY4:
 		case K_AUX1:
 		case K_AUX2:
 		case K_AUX3:
@@ -2823,6 +2829,7 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 		case K_AUX15:
 		case K_AUX16:
 		case K_KP_ENTER:
+		case K_ENTER:
 			if (item) {
 				if (item->type == ITEM_TYPE_EDITFIELD || item->type == ITEM_TYPE_NUMERICFIELD) {
 					item->cursorPos = 0;

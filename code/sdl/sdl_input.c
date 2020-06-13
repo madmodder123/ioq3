@@ -225,9 +225,9 @@ static keyNum_t IN_TranslateSDLToQ3Key( SDL_Keysym *keysym, qboolean down )
 			case SDLK_LEFT:         key = K_LEFTARROW;     break;
 			case SDLK_KP_6:         key = K_KP_RIGHTARROW; break;
 			case SDLK_RIGHT:        key = K_RIGHTARROW;    break;
-			case SDLK_KP_2:         key = K_PAD0_LEFTSTICK_DOWN;  break;
+			case SDLK_KP_2:         key = K_KP_DOWNARROW;  break;
 			case SDLK_DOWN:         key = K_DOWNARROW;     break;
-			case SDLK_KP_8:         key = K_PAD0_LEFTSTICK_UP;    break;
+			case SDLK_KP_8:         key = K_KP_UPARROW;    break;
 			case SDLK_UP:           key = K_UPARROW;       break;
 			case SDLK_ESCAPE:       key = K_ESCAPE;        break;
 			case SDLK_KP_ENTER:     key = K_KP_ENTER;      break;

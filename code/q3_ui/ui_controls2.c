@@ -916,7 +916,7 @@ static sfxHandle_t Controls_MenuKey( int key )
 				key = -1;
 				break;
 		
-			case K_MOUSE2:
+			case K_PAD0_START:
 			case K_ESCAPE:
 				if (s_controls.changesmade)
 					Controls_SetConfig();
