@@ -1616,11 +1616,13 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 	sfxHandle_t		sound = 0;
 	menucommon_s	*item;
 	int				cursor_prev;
-
 	// menu system keys
 	switch ( key )
 	{
 		case K_PAD0_START:
+			UI_PopMenu();
+			return menu_out_sound;
+	}
 		case K_ESCAPE:
 			UI_PopMenu();
 			return menu_out_sound;
@@ -1674,7 +1676,7 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 			trap_Cmd_ExecuteText(EXEC_APPEND, "screenshot\n");
 			break;
 #endif
-		case K_KP_UPARROW:
+		case K_PAD0_DPAD_UP:
 		case K_UPARROW:
 			cursor_prev    = m->cursor;
 			m->cursor_prev = m->cursor;
@@ -1687,7 +1689,7 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 			break;
 
 		case K_TAB:
-		case K_KP_DOWNARROW:
+		case K_PAD0_DPAD_DOWN:
 		case K_DOWNARROW:
 			cursor_prev    = m->cursor;
 			m->cursor_prev = m->cursor;
@@ -1728,6 +1730,7 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 		case K_AUX16:
 		case K_KP_ENTER:
 		case K_ENTER:
+		case K_PAD0_A:
 			if (item)
 				if (!(item->flags & (QMF_MOUSEONLY|QMF_GRAYED|QMF_INACTIVE)))
 					return (Menu_ActivateItem( m, item ));
