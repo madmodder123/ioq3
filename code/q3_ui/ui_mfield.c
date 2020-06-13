@@ -409,6 +409,8 @@ sfxHandle_t MenuField_Key( menufield_s* m, int* key )
 		case K_DOWNARROW:
 		case K_KP_UPARROW:
 		case K_UPARROW:
+		case K_JOY_DPAD_UP:
+		case K_JOY_DPAD_DOWN:
 			break;
 
 		default:

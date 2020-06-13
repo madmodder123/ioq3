@@ -101,7 +101,7 @@ typedef enum {
 	K_MWHEELDOWN,
 	K_MWHEELUP,
 
-	K_JOY1,
+	K_JOY1 = 13,
 	K_JOY2,
 	K_JOY3,
 	K_JOY4,
@@ -111,7 +111,7 @@ typedef enum {
 	K_JOY8,
 	K_JOY9,
 	K_JOY10,
-	K_JOY11,
+	K_JOY11 = 27,
 	K_JOY12,
 	K_JOY13,
 	K_JOY14,
