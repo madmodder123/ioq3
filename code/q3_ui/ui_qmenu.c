@@ -460,18 +460,13 @@ static sfxHandle_t RadioButton_Key( menuradiobutton_s *rb, int key )
 			if (!(rb->generic.flags & QMF_HASMOUSEFOCUS))
 				break;
 
-		case K_JOY1:
-		case K_JOY2:
-		case K_JOY3:
-		case K_JOY4:
-		case K_ENTER:
 		case K_KP_ENTER:
 		case K_KP_LEFTARROW:
 		case K_LEFTARROW:
-		case K_JOY_DPAD_LEFT:
+		case K_PAD0_DPAD_LEFT:
 		case K_KP_RIGHTARROW:
 		case K_RIGHTARROW:
-		case K_JOY_DPAD_RIGHT:
+		case K_PAD0_DPAD_RIGHT:
 			rb->curvalue = !rb->curvalue;
 			if ( rb->generic.callback )
 				rb->generic.callback( rb, QM_ACTIVATED );
@@ -1678,7 +1673,7 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 #endif
 		case K_KP_UPARROW:
 		case K_UPARROW:
-		case K_JOY_DPAD_UP:
+		case K_PAD0_DPAD_UP:
 			cursor_prev    = m->cursor;
 			m->cursor_prev = m->cursor;
 			m->cursor--;
@@ -1692,7 +1687,7 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 		case K_TAB:
 		case K_KP_DOWNARROW:
 		case K_DOWNARROW:
-		case K_JOY_DPAD_DOWN:
+		case K_PAD0_DPAD_DOWN:
 			cursor_prev    = m->cursor;
 			m->cursor_prev = m->cursor;
 			m->cursor++;
@@ -1730,8 +1725,6 @@ sfxHandle_t Menu_DefaultKey( menuframework_s *m, int key )
 		case K_AUX14:
 		case K_AUX15:
 		case K_AUX16:
-		case K_KP_ENTER:
-		case K_ENTER:
 			if (item)
 				if (!(item->flags & (QMF_MOUSEONLY|QMF_GRAYED|QMF_INACTIVE)))
 					return (Menu_ActivateItem( m, item ));
