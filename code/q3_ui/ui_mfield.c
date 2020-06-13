@@ -396,8 +396,6 @@ sfxHandle_t MenuField_Key( menufield_s* m, int* key )
 	{
 		case K_KP_ENTER:
 		case K_ENTER:
-		case K_JOY1:
-		case K_JOY2:
 		case K_JOY3:
 		case K_JOY4:
 			// have enter go to next cursor point
@@ -409,8 +407,8 @@ sfxHandle_t MenuField_Key( menufield_s* m, int* key )
 		case K_DOWNARROW:
 		case K_KP_UPARROW:
 		case K_UPARROW:
-		case K_JOY_DPAD_UP:
-		case K_JOY_DPAD_DOWN:
+		case K_PAD0_DPAD_UP:
+		case K_PAD0_DPAD_DOWN:
 			break;
 
 		default:
