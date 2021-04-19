@@ -81,6 +81,10 @@ static sfxHandle_t Reset_MenuKey( int key ) {
 	case K_LEFTARROW:
 	case K_KP_RIGHTARROW:
 	case K_RIGHTARROW:
+	case K_PAD0_DPAD_LEFT:
+	case K_PAD0_LEFTSTICK_LEFT:
+	case K_PAD0_DPAD_RIGHT:
+	case K_PAD0_LEFTSTICK_RIGHT:
 		key = K_TAB;
 		break;
 

@@ -1735,7 +1735,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 		max = Item_ListBox_MaxScroll(item);
 		if (item->window.flags & WINDOW_HORIZONTAL) {
 			viewmax = (item->window.rect.w / listPtr->elementWidth);
-			if ( key == K_LEFTARROW || key == K_KP_LEFTARROW ) 
+			if ( key == K_LEFTARROW || key == K_KP_LEFTARROW || key == K_PAD0_DPAD_LEFT ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos--;
@@ -1758,7 +1758,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 				}
 				return qtrue;
 			}
-			if ( key == K_RIGHTARROW || key == K_KP_RIGHTARROW ) 
+			if ( key == K_RIGHTARROW || key == K_KP_RIGHTARROW || key == K_PAD0_DPAD_RIGHT ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos++;
@@ -1784,7 +1784,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 		}
 		else {
 			viewmax = (item->window.rect.h / listPtr->elementHeight);
-			if ( key == K_UPARROW || key == K_KP_UPARROW ) 
+			if ( key == K_UPARROW || key == K_KP_UPARROW || key == K_PAD0_DPAD_UP ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos--;
@@ -1807,7 +1807,7 @@ qboolean Item_ListBox_HandleKey(itemDef_t *item, int key, qboolean down, qboolea
 				}
 				return qtrue;
 			}
-			if ( key == K_DOWNARROW || key == K_KP_DOWNARROW ) 
+			if ( key == K_DOWNARROW || key == K_KP_DOWNARROW || key == K_PAD0_DPAD_DOWN ) 
 			{
 				if (!listPtr->notselectable) {
 					listPtr->cursorPos++;
@@ -2687,11 +2687,19 @@ int UI_SelectForKey(int key)
 		case K_JOY2:
 		case K_JOY3:
 		case K_JOY4:
+		case K_PAD0_A:
+		case K_PAD0_B:
+		case K_PAD0_X:
+		case K_PAD0_Y:
+		case K_PAD0_DPAD_RIGHT:
+		case K_PAD0_LEFTSTICK_RIGHT:
 			return 1; // next
 
 		case K_MOUSE2:
 		case K_LEFTARROW:
 		case K_KP_LEFTARROW:
+		case K_PAD0_DPAD_LEFT:
+		case K_PAD0_LEFTSTICK_LEFT:
 			return -1; // previous
 	}
 
@@ -2771,6 +2779,8 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 			break;
 		case K_KP_UPARROW:
 		case K_UPARROW:
+		case K_PAD0_DPAD_UP:
+		case K_PAD0_LEFTSTICK_UP:
 			Menu_SetPrevCursorItem(menu);
 			break;
 
@@ -2784,6 +2794,8 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 		case K_TAB:
 		case K_KP_DOWNARROW:
 		case K_DOWNARROW:
+		case K_PAD0_DPAD_DOWN:
+		case K_PAD0_LEFTSTICK_DOWN:
 			Menu_SetNextCursorItem(menu);
 			break;
 
@@ -2812,6 +2824,10 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 		case K_JOY2:
 		case K_JOY3:
 		case K_JOY4:
+		case K_PAD0_A:
+		case K_PAD0_B:
+		case K_PAD0_X:
+		case K_PAD0_Y:
 		case K_AUX1:
 		case K_AUX2:
 		case K_AUX3:
